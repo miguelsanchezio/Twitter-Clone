@@ -1,5 +1,5 @@
 body {
-  background: #488ab6;
+  background: #f0f9ff;
 }
 
 .navbar {
@@ -52,3 +52,5 @@ ul.nav.navbar-nav li {
   color: #fff;
   text-shadow: 0 0 8px #484d50;
 }
+
+/* background-image: linear-gradient(to right, rgba(0, 60, 99, 0.639), rgba(0, 60, 99, 0.639)),url('./images/signed-out-home.jpg'); */
