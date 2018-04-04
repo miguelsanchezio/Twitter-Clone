@@ -4,21 +4,37 @@ import { connect } from 'react-redux';
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
 import { authUser } from '../store/actions/auth';
+import { removeError } from '../store/actions/errors';
 
 const Main = props => {
-  const { authUser } = props;
+  const { authUser, errors, removeError } = props;
   return (
     <div className="container">
       <Switch>
         <Route exact path="/" render={props => <Homepage {...props}/>} />
         <Route exact path="/signin" render={props => {
           return (
-            <AuthForm onAuth={authUser} {...props} buttonText="Log In" heading="Welcome Back!" />
+            <AuthForm
+              removeError={removeError}
+              errors={errors}
+              onAuth={authUser}
+              {...props}
+              buttonText="Log In"
+              heading="Welcome Back!"
+            />
           )
         }} />
         <Route exact path="/signup" render={props => {
           return (
-            <AuthForm onAuth={authUser} {...props} signUp buttonText="Sign Up" heading="Join Warbler Today!" />
+            <AuthForm
+              removeError={removeError}
+              errors={errors}            
+              onAuth={authUser}
+              {...props}
+              signUp
+              buttonText="Sign Up"
+              heading="Join Warbler Today!"
+            />
           )
         }} />
       </Switch>
@@ -28,8 +44,9 @@ const Main = props => {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    errors: state.errors
   }
 }
 
-export default withRouter(connect(mapStateToProps, { authUser })(Main));
+export default withRouter(connect(mapStateToProps, { authUser, removeError })(Main));
