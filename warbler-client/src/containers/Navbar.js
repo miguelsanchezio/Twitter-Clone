@@ -7,7 +7,7 @@ import { logout } from '../store/actions/auth';
 class Navbar extends Component {
   logout = e => {
     e.preventDefault();
-    this.props.onLogout;
+    this.props.logout();
   }
 
   render() {
@@ -17,12 +17,8 @@ class Navbar extends Component {
           <Link to="/" className="navbar-brand">
             <img src={Logo} alt="Warbler"/>
           </Link>
-          <ul className="nav navbar-nav navbar-right">
-            <li>
-              <Link to="/signup">Sign Up</Link>
-            </li>
             {this.props.currentUser.isAuthenticated ? (
-              <ul className="nav nav-navbar navbar-right">
+              <ul className="nav navbar-nav navbar-right">
                 <li>
                   <Link to={`/users/${this.props.currentUser.user.id}/messages/new`}>
                     New Message
@@ -33,11 +29,15 @@ class Navbar extends Component {
                 </li>
               </ul>
             ) : (
-            <li>
-              <Link to="/signin">Log In</Link>
-            </li>
+            <ul className="nav navbar-nav navbar-right">              
+              <li>
+                <Link to="/signup">Sign Up</Link>
+              </li>
+              <li>
+                <Link to="/signin">Log In</Link>
+              </li>
+            </ul>
             )}
-          </ul>
         </div>        
       </nav>
     )
@@ -50,10 +50,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDistachToProps = dispatch => {
-  return {
-    onLogout: () => {dispatch(logout())}
-  }
-}
-
-export default connect(mapStateToProps, mapDistachToProps)(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);
