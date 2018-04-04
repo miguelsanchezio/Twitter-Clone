@@ -7,10 +7,14 @@ export const loadMessages = messages => ({
   messages
 });
 
-export const fetchMessage = () => {
+export const fetchMessages = () => {
   return dispatch => {
-    return apiCall('get', '/api/messages').then(res =>
-      dispatch(loadMessages(res)).catch(err => addError(err.message))
-    );
-  }
+    return apiCall('get', '/api/messages')
+      .then(res => {
+        dispatch(loadMessages(res));
+      })
+      .catch(err => {
+        dispatch(addError(err.message));
+      });
+  };
 };
