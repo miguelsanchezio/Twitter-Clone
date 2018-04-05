@@ -8,8 +8,8 @@ const UserAside = ({ profileImageUrl, username }) => (
         <img
           src={profileImageUrl || DefaultProfileImage}
           alt={username}
-          width="100"
-          height="100"
+          // width="100"
+          // height="100"
           className="img-thumbnail"/>
       </div>
     </div>

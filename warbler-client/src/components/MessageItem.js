@@ -5,7 +5,7 @@ import DefaultProfileImg from '../images/default-profile-image.jpg';
 
 const MessageItem = ({ date, profileImageUrl, text, username, removeMessage, isCorrectUser }) => (
   <div>
-    <li className="list-group-item">
+    <li className="list-group-item mb-2">
       <img src={profileImageUrl || DefaultProfileImg} alt={username} height="100" width="100" className="timeline-image"/>
       <div className="message-area">
         <Link to="/">@{username} &nbsp;</Link>
@@ -16,7 +16,7 @@ const MessageItem = ({ date, profileImageUrl, text, username, removeMessage, isC
         </span>
         <p>{text}</p>
         {isCorrectUser && (
-          <a className="btn btn-danger" onClick={removeMessage}>Delete</a>
+          <a className="btn btn-sm btn-danger" onClick={removeMessage}>Delete</a>
         )}
       </div>
     </li>
