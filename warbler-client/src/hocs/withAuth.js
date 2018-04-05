@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-export const withAuth = componentToBeRendered => {
+const withAuth = ComponentToBeRendered => {
   class Authenticate extends Component {
     componentWillMount() {
       if(this.props.isAuthenticated === false) {
@@ -14,7 +14,7 @@ export const withAuth = componentToBeRendered => {
       }
     }
     render() {
-      return <componentToBeRendered {...this.props}/>;
+      return <ComponentToBeRendered {...this.props}/>;
     }
   }
   
@@ -27,3 +27,4 @@ export const withAuth = componentToBeRendered => {
   return connect(mapStateToProps)(Authenticate);
 }
 
+export default withAuth;
